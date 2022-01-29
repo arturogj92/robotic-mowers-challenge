@@ -7,10 +7,10 @@ data class Plateau(val xSize: Size, val ySize: Size) {
 
     fun isValidLocation(position: Location) =
         when {
-            position.x > xSize.value -> false
-            position.y > ySize.value -> false
-            position.x < xMin -> false
-            position.y < yMin -> false
+            position.coords.x > xSize.value -> false
+            position.coords.y > ySize.value -> false
+            position.coords.x < xMin -> false
+            position.coords.y < yMin -> false
             else -> true
         }
 
