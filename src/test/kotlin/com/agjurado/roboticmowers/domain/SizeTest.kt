@@ -1,6 +1,7 @@
 package com.agjurado.roboticmowers.domain
 
 import arrow.core.Either
+import com.agjurado.roboticmowers.domain.error.InvalidSize
 import io.kotest.assertions.arrow.either.shouldBeLeft
 import io.kotest.assertions.arrow.either.shouldBeRight
 import org.junit.jupiter.api.Test

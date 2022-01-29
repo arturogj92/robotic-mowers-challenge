@@ -3,8 +3,9 @@ package com.agjurado.roboticmowers.domain
 import arrow.core.Either
 import arrow.core.left
 import arrow.core.right
+import com.agjurado.roboticmowers.domain.error.InvalidSize
 
-data class Size(private val value: Int) {
+data class Size(val value: Int) {
 
     init {
         require(validate(value).isRight()) {"Invalid size"}
