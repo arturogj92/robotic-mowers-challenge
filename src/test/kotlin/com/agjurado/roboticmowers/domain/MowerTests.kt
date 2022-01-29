@@ -13,7 +13,7 @@ class MowerTests {
     @Test
     fun `a mower can't be deployed outside the plateau`() {
         val aValidMower: Either<MowerError, Mower> = Mower.create(
-            plateau = Plateau(xSize = Size(5), ySize = Size(5)),
+            plateau = Plateau(upperRightCoords = Coords(5,5)),
             initialLocation = Location(Coords(6, 3), North),
             instructions = listOf(Left, Right, Move, Move)
         )
@@ -24,7 +24,7 @@ class MowerTests {
     @Test
     fun `a mower is deployed inside the plateau`() {
         val mowerWithInvalidPositions: Either<MowerError, Mower> = Mower.create(
-            plateau = Plateau(xSize = Size(5), ySize = Size(5)),
+            plateau = Plateau(upperRightCoords = Coords(5,5)),
             initialLocation = Location(Coords(0, 0), North),
             instructions = listOf(Left, Right, Move, Move)
         )
@@ -35,7 +35,7 @@ class MowerTests {
     @Test
     fun `the mower will finish in a location inside the plateau after processing the instructions`() {
         val mower = Mower(
-            plateau = Plateau(xSize = Size(5), ySize = Size(5)),
+            plateau = Plateau(upperRightCoords = Coords(5,5)),
             initialLocation = Location(Coords(1, 2), North),
             instructions = listOf(Left, Move, Left, Move, Left, Move, Left, Move, Move)
         )
