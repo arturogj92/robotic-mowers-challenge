@@ -13,6 +13,11 @@ data class Mower(
 ) {
     private var currentLocation = initialLocation
 
+    init {
+        require(validateInitialLocation(plateau,
+            initialLocation).isRight()) { "The mower initial position is not valid" }
+    }
+
     fun processInstructions() =
         instructions.forEach(::handleInstruction)
 
@@ -44,7 +49,12 @@ data class Mower(
             initialLocation: Location,
             instructions: List<MowerAction>,
         ): Either<MowerError, Mower> =
+            validateInitialLocation(plateau, initialLocation)
+                .map { Mower(plateau, initialLocation, instructions) }
+
+        private fun validateInitialLocation(plateau: Plateau, initialLocation: Location) =
             if (!plateau.isValidLocation(initialLocation)) InvalidInitialPosition.left()
-            else Mower(plateau, initialLocation, instructions).right()
+            else initialLocation.right()
+
     }
 }
