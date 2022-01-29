@@ -18,7 +18,7 @@ data class Mower(
             initialLocation).isRight()) { "The mower initial position is not valid" }
     }
 
-    fun processInstructions() =
+    fun mow() =
         instructions.forEach(::handleInstruction)
 
     private fun handleInstruction(mowerAction: MowerAction) {

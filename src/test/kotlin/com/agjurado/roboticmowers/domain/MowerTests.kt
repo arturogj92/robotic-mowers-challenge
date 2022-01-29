@@ -52,7 +52,7 @@ class MowerTests {
             instructions = listOf(Left, Move, Left, Move, Left, Move, Left, Move, Move)
         )
 
-        mower.processInstructions()
+        mower.mow()
 
         val result = mower.getCurrentLocation()
 
