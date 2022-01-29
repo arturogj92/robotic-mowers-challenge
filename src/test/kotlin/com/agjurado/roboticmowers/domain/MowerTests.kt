@@ -49,5 +49,4 @@ class MowerTests {
         assertThat(result, `is`(expectedEndLocation))
     }
 
-
 }

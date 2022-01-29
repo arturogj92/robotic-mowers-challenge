@@ -5,11 +5,10 @@ data class Location(val coords: Coords, val direction: Direction) {
 
     fun getForwardLocation(): Location =
         when (direction) {
-            North -> copy(coords = coords.copy(y = coords.y + 1))
-            West -> copy(coords = coords.copy(x = coords.x - 1))
-            South -> copy(coords = coords.copy(y = coords.y - 1))
-            East -> copy(coords = coords.copy(x = coords.x + 1))
+            North -> copy(coords = coords.getAboveCoord())
+            West -> copy(coords = coords.getLeftCoord())
+            South -> copy(coords = coords.getBelowCoord())
+            East -> copy(coords = coords.getRightCoord())
         }
-
 
 }
