@@ -1,4 +1,4 @@
-package com.agjurado.roboticmowers.infrastructure.springevents
+package com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.adapters.springevents
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

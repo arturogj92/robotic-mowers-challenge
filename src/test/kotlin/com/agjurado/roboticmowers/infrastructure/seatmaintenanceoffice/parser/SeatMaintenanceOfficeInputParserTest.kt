@@ -2,7 +2,9 @@ package com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.parser
 
 import arrow.core.Validated
 import com.agjurado.roboticmowers.domain.*
-import com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.SeatMaintenanceOfficeMowerInput
+import com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.adapters.SeatMaintenanceOfficeMowerInput
+import com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.adapters.InvalidInput
+import com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.adapters.SeatMaintenanceOfficeInputParser
 import io.kotest.assertions.arrow.validation.shouldBeInvalid
 import io.kotest.assertions.arrow.validation.shouldBeValid
 import org.junit.jupiter.api.Test

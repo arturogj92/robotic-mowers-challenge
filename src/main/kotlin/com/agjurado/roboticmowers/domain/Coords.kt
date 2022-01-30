@@ -6,7 +6,7 @@ import arrow.core.right
 import com.agjurado.roboticmowers.domain.error.CoordsError
 import com.agjurado.roboticmowers.domain.error.InvalidRawCoordsAmount
 import com.agjurado.roboticmowers.domain.error.NotNumericCoords
-import com.agjurado.roboticmowers.shared.removeWhiteSpaces
+import com.agjurado.roboticmowers.shared.languageextensions.removeWhiteSpaces
 
 data class Coords(val x: Int, val y: Int) {
 

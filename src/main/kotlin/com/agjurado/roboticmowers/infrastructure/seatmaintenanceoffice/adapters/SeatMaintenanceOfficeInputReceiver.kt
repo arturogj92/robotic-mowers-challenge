@@ -1,4 +1,4 @@
-package com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice
+package com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.adapters
 
 import com.agjurado.roboticmowers.application.MowerActivator
 import com.agjurado.roboticmowers.domain.InputParser

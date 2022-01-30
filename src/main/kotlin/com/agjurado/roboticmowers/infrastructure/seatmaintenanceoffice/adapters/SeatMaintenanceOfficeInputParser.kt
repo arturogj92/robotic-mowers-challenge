@@ -1,12 +1,11 @@
-package com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.parser
+package com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.adapters
 
 import arrow.core.*
 import arrow.typeclasses.Semigroup
 import com.agjurado.roboticmowers.domain.*
 import com.agjurado.roboticmowers.domain.error.*
-import com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.SeatMaintenanceOfficeMowerInput
 import com.agjurado.roboticmowers.shared.languageextensions.filterIndexedBase1
-import com.agjurado.roboticmowers.shared.removeWhiteSpaces
+import com.agjurado.roboticmowers.shared.languageextensions.removeWhiteSpaces
 import org.springframework.stereotype.Component
 
 
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component
 object SeatMaintenanceOfficeInputParser : InputParser<SeatMaintenanceOfficeMowerInput> {
     override fun parseInput(input: SeatMaintenanceOfficeMowerInput): Validated<Set<InvalidInput>, List<Mower>> =
         mapMowerRawConfig(input.value.lines())
-            .let(::generateConfiguredMowers)
+            .let(SeatMaintenanceOfficeInputParser::generateConfiguredMowers)
             .traverseValidated(Semigroup.list()) { it }
             .mapLeft { it.toSet() }
 

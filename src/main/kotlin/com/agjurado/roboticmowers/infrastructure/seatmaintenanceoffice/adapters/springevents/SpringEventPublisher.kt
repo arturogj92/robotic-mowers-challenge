@@ -1,4 +1,4 @@
-package com.agjurado.roboticmowers.infrastructure.springevents
+package com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.adapters.springevents
 
 import com.agjurado.roboticmowers.domain.event.Event
 import com.agjurado.roboticmowers.domain.event.EventPublisher

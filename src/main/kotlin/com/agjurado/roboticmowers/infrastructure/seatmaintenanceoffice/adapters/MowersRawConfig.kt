@@ -1,4 +1,4 @@
-package com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.parser
+package com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.adapters
 
 data class MowersRawConfig(
     val rawPlateauUpperRightCoords: RawCoord,
