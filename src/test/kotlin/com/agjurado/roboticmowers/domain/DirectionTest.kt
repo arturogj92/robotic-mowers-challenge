@@ -1,5 +1,7 @@
 package com.agjurado.roboticmowers.domain
 
+import com.agjurado.roboticmowers.domain.error.DirectionMustBeALetter
+import com.agjurado.roboticmowers.domain.error.UnknownDirection
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.Test
@@ -61,5 +63,43 @@ class DirectionTest {
         val east: Direction = East
 
         assertThat(east.turnRight(), `is`(South))
+    }
+
+    @Test
+    fun `parsing a raw direction represented by not a letter, an error must be returned`() {
+        val notLetterDirection = listOf(
+            '2',
+            '1',
+            '-',
+            '+',
+            '!'
+        )
+
+        notLetterDirection.forEach {
+            Direction.parseDirection(it) shouldBeInvalid DirectionMustBeALetter
+        }
+    }
+
+    @Test
+    fun `parsing a raw direction represented by unknown character, an error must be returned`() {
+        val unknownDirections = listOf(
+            'R',
+            'T',
+            'Z',
+            'X',
+            'V'
+        )
+
+        unknownDirections.forEach {
+            Direction.parseDirection(it) shouldBeInvalid UnknownDirection
+        }
+    }
+
+    @Test
+    fun `parsing valid raw directions`() {
+        Direction.parseDirection('N') shouldBeValid North
+        Direction.parseDirection('E') shouldBeValid East
+        Direction.parseDirection('W') shouldBeValid West
+        Direction.parseDirection('S') shouldBeValid South
     }
 }
