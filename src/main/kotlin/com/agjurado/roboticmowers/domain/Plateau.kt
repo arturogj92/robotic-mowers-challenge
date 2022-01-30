@@ -23,7 +23,7 @@ data class Plateau(private val upperRightCoords: Coords) {
         }
 
     companion object {
-        fun createPlateauFrom(upperRightCoords: Coords) =
+        fun createPlateauFrom(upperRightCoords: Coords): Either<PlateauError, Plateau> =
             validatePlateauLimits(upperRightCoords)
                 .map(::Plateau)
 

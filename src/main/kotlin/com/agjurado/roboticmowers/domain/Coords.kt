@@ -6,6 +6,7 @@ import arrow.core.right
 import com.agjurado.roboticmowers.domain.error.CoordsError
 import com.agjurado.roboticmowers.domain.error.InvalidRawCoordsAmount
 import com.agjurado.roboticmowers.domain.error.NotNumericCoords
+import com.agjurado.roboticmowers.shared.removeWhiteSpaces
 
 data class Coords(val x: Int, val y: Int) {
 
@@ -16,19 +17,18 @@ data class Coords(val x: Int, val y: Int) {
 
 
     companion object {
-        fun parseSeparatedBySpaces(rawCoords: String): Either<CoordsError, Coords> =
-            validate(rawCoords)
+        fun parseRaw(rawCoordsSeparatedBySpaces: String): Either<CoordsError, Coords> =
+            validate(rawCoordsSeparatedBySpaces)
 
-        private fun validate(rawCoords: String): Either<CoordsError, Coords> =
+        private fun validate(rawCoordsSeparatedBySpaces: String): Either<CoordsError, Coords> =
             when {
-                rawCoords.split(" ").size != 2 -> InvalidRawCoordsAmount.left()
-                coordsAreNotNumeric(rawCoords) -> NotNumericCoords.left()
-                else -> sanitize(rawCoords).let { Coords(it[0].digitToInt(), it[1].digitToInt()) }.right()
+                rawCoordsSeparatedBySpaces.split(" ").size != 2 -> InvalidRawCoordsAmount.left()
+                coordsAreNotNumeric(rawCoordsSeparatedBySpaces) -> NotNumericCoords.left()
+                else -> rawCoordsSeparatedBySpaces.removeWhiteSpaces().let { Coords(it[0].digitToInt(), it[1].digitToInt()) }.right()
             }
 
-        private fun coordsAreNotNumeric(rawCoords: String) = sanitize(rawCoords).any { !it.isDigit() }
+        private fun coordsAreNotNumeric(rawCoordsSeparatedBySpaces: String) = rawCoordsSeparatedBySpaces.removeWhiteSpaces().any { !it.isDigit() }
 
-        private fun sanitize(rawCoords: String) = rawCoords.filterNot { it.isWhitespace() }
     }
 
 }

@@ -9,7 +9,7 @@ import com.agjurado.roboticmowers.domain.error.MowerError
 data class Mower(
     private val plateau: Plateau,
     private val initialLocation: Location,
-    private val instructions: List<MowerAction>,
+    private val actions: List<MowerAction>,
 ) {
     private var currentLocation = initialLocation
 
@@ -19,9 +19,9 @@ data class Mower(
     }
 
     fun mow() =
-        instructions.forEach(::handleInstruction)
+        actions.forEach(::handleAction)
 
-    private fun handleInstruction(mowerAction: MowerAction) {
+    private fun handleAction(mowerAction: MowerAction) {
         when (mowerAction) {
             Left -> turnLeft()
             Right -> turnRight()
@@ -47,10 +47,10 @@ data class Mower(
         fun create(
             plateau: Plateau,
             initialLocation: Location,
-            instructions: List<MowerAction>,
+            actions: List<MowerAction>,
         ): Either<MowerError, Mower> =
             validateInitialLocation(plateau, initialLocation)
-                .map { Mower(plateau, initialLocation, instructions) }
+                .map { Mower(plateau, initialLocation, actions) }
 
         private fun validateInitialLocation(plateau: Plateau, initialLocation: Location) =
             if (!plateau.isValidLocation(initialLocation)) InvalidInitialPosition.left()

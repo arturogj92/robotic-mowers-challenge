@@ -10,5 +10,4 @@ data class Location(val coords: Coords, val direction: Direction) {
             South -> copy(coords = coords.getBelowCoords())
             East -> copy(coords = coords.getRightCoords())
         }
-
 }

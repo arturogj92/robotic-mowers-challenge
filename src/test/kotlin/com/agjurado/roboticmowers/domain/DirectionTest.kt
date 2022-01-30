@@ -76,7 +76,7 @@ class DirectionTest {
         )
 
         notLetterDirection.forEach {
-            Direction.parseDirection(it) shouldBeInvalid DirectionMustBeALetter
+            Direction.parseRawDirection(it) shouldBeInvalid DirectionMustBeALetter
         }
     }
 
@@ -91,15 +91,15 @@ class DirectionTest {
         )
 
         unknownDirections.forEach {
-            Direction.parseDirection(it) shouldBeInvalid UnknownDirection
+            Direction.parseRawDirection(it) shouldBeInvalid UnknownDirection
         }
     }
 
     @Test
     fun `parsing valid raw directions`() {
-        Direction.parseDirection('N') shouldBeValid North
-        Direction.parseDirection('E') shouldBeValid East
-        Direction.parseDirection('W') shouldBeValid West
-        Direction.parseDirection('S') shouldBeValid South
+        Direction.parseRawDirection('N') shouldBeValid North
+        Direction.parseRawDirection('E') shouldBeValid East
+        Direction.parseRawDirection('W') shouldBeValid West
+        Direction.parseRawDirection('S') shouldBeValid South
     }
 }

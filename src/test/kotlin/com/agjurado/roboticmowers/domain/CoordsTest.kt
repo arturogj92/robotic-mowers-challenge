@@ -37,7 +37,7 @@ class CoordsTest {
     fun `parsing well formatted raw coords separated by spaces`() {
         val rawCoords = "3 3"
 
-        Coords.parseSeparatedBySpaces(rawCoords).shouldBeRight()
+        Coords.parseRaw(rawCoords).shouldBeRight()
     }
 
     @Test
@@ -51,7 +51,7 @@ class CoordsTest {
         )
 
         invalidRawCoords.forEach {
-            Coords.parseSeparatedBySpaces(it) shouldBeInvalid InvalidRawCoordsAmount
+            Coords.parseRaw(it) shouldBeInvalid InvalidRawCoordsAmount
         }
     }
 
@@ -64,7 +64,7 @@ class CoordsTest {
         )
 
         invalidRawCoords.forEach {
-            Coords.parseSeparatedBySpaces(it) shouldBeInvalid NotNumericCoords
+            Coords.parseRaw(it) shouldBeInvalid NotNumericCoords
         }
     }
 

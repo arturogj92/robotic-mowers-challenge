@@ -16,7 +16,7 @@ class MowerTests {
         val anInvalidMower: Either<MowerError, Mower> = Mower.create(
             plateau = Plateau(upperRightCoords = Coords(5,5)),
             initialLocation = Location(Coords(6, 3), North),
-            instructions = listOf(Left, Right, Move, Move)
+            actions = listOf(Left, Right, Move, Move)
         )
 
         anInvalidMower.shouldBeLeft()
@@ -27,7 +27,7 @@ class MowerTests {
         val aValidMower: Either<MowerError, Mower> = Mower.create(
             plateau = Plateau(upperRightCoords = Coords(5,5)),
             initialLocation = Location(Coords(0, 0), North),
-            instructions = listOf(Left, Right, Move, Move)
+            actions = listOf(Left, Right, Move, Move)
         )
 
         aValidMower.shouldBeRight()
@@ -39,17 +39,17 @@ class MowerTests {
             Mower(
                 plateau = Plateau(upperRightCoords = Coords(5,5)),
                 initialLocation = Location(Coords(-1, 0), North),
-                instructions = listOf(Left, Right, Move, Move)
+                actions = listOf(Left, Right, Move, Move)
             )
         }
     }
 
     @Test
-    fun `the mower will finish in a location inside the plateau after processing the instructions`() {
+    fun `the mower will finish in a location inside the plateau after processing the actions`() {
         val mower = Mower(
             plateau = Plateau(upperRightCoords = Coords(5,5)),
             initialLocation = Location(Coords(1, 2), North),
-            instructions = listOf(Left, Move, Left, Move, Left, Move, Left, Move, Move)
+            actions = listOf(Left, Move, Left, Move, Left, Move, Left, Move, Move)
         )
 
         mower.mow()

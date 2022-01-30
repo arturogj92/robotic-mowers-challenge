@@ -10,7 +10,7 @@ sealed interface Direction {
     fun turnRight(): Direction
 
     companion object {
-        fun parseDirection(rawDirection: Char) =
+        fun parseRawDirection(rawDirection: Char) =
             when {
                 !rawDirection.isLetter() -> DirectionMustBeALetter.left()
                 !isKnownDirection(rawDirection) -> UnknownDirection.left()
