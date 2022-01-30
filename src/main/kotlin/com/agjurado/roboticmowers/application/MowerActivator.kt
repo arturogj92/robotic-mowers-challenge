@@ -1,17 +1,24 @@
 package com.agjurado.roboticmowers.application
 
 import com.agjurado.roboticmowers.domain.Mower
+import com.agjurado.roboticmowers.domain.event.MowerFinishedWork
+import com.agjurado.roboticmowers.domain.event.EventPublisher
 import org.springframework.stereotype.Service
 
 @Service
-class MowerActivator {
+class MowerActivator(
+    private val eventPublisher: EventPublisher,
+) {
 
-    //TODO checkear que no se sale del mapa
-    //TODO lanzar domain event capturarlo con un event listener y manejarlo con un event handler y que al final imprima
-    //TODO subir a github, hacer readme
-    //Descargarlo y ejecutarlo con java -jar
     fun startMowing(mower: Mower) {
         mower.mow()
+            .also(::raiseEvent)
+    }
+
+    private fun raiseEvent(mower: Mower) {
+        eventPublisher.publish(
+            MowerFinishedWork(this, mower.getCurrentLocation())
+        )
     }
 
 }

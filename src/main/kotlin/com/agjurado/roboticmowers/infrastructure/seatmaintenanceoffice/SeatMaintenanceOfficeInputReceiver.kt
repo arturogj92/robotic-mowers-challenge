@@ -6,12 +6,22 @@ import com.agjurado.roboticmowers.domain.Mower
 import org.springframework.stereotype.Component
 
 @Component
-class SeatMaintenanceOfficeReceiver(
-    private val inputParser: InputParser<SeatMaintenanceOfficeMowerInput>,
+class SeatMaintenanceOfficeInputReceiver(
+    inputParser: InputParser<SeatMaintenanceOfficeMowerInput>,
     private val mowerActivator: MowerActivator
 ) {
 
     init {
+        val exampleInput = SeatMaintenanceOfficeMowerInput(
+            """
+            5 5
+            1 2 N
+            LMLMLMLMM
+            3 3 E
+            MMRMMRMRRM
+        """.trimIndent()
+        )
+
         inputParser
             .parseInput(exampleInput)
             .map { powerOnMow(it) }
@@ -23,16 +33,4 @@ class SeatMaintenanceOfficeReceiver(
             .map(mowerActivator::startMowing)
     }
 
-
-    companion object {
-        private val exampleInput = SeatMaintenanceOfficeMowerInput(
-            """
-            5 5
-            1 2 N
-            LMLMLMLMM
-            3 3 E
-            MMRMMRMRRM
-        """.trimIndent()
-        )
-    }
 }

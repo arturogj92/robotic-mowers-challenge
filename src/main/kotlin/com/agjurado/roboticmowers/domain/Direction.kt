@@ -8,6 +8,7 @@ import com.agjurado.roboticmowers.domain.error.UnknownDirection
 sealed interface Direction {
     fun turnLeft(): Direction
     fun turnRight(): Direction
+    fun printDirection(): String
 
     companion object {
         fun parseRawDirection(rawDirection: Char) =
@@ -45,20 +46,23 @@ sealed interface Direction {
 object North : Direction {
     override fun turnLeft() = West
     override fun turnRight() = East
+    override fun printDirection() = "N"
 }
 
 object West : Direction {
     override fun turnLeft() = South
     override fun turnRight() = North
+    override fun printDirection() = "W"
 }
 
 object South : Direction {
     override fun turnLeft() = East
     override fun turnRight() = West
-
+    override fun printDirection() = "S"
 }
 
 object East : Direction {
     override fun turnLeft() = North
     override fun turnRight() = South
+    override fun printDirection() = "E"
 }

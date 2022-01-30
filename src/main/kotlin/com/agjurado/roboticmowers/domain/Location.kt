@@ -10,4 +10,12 @@ data class Location(val coords: Coords, val direction: Direction) {
             South -> copy(coords = coords.getBelowCoords())
             East -> copy(coords = coords.getRightCoords())
         }
+
+    override fun toString(): String {
+        return "${coords.x} ${coords.y} ${direction.printDirection()}"
+    }
+
+
+
+
 }
