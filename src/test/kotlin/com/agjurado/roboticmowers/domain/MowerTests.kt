@@ -48,17 +48,30 @@ class MowerTests {
     fun `the mower will finish in a location inside the plateau after processing the actions`() {
         val mower = Mower(
             plateau = Plateau(upperRightCoords = Coords(5,5)),
-            initialLocation = Location(Coords(1, 2), North),
-            actions = listOf(Left, Move, Left, Move, Left, Move, Left, Move, Move)
+            initialLocation = Location(Coords(1, 1), North),
+            actions = listOf(Move, Move, Right)
         )
 
         mower.mow()
 
         val result = mower.getCurrentLocation()
 
-        val expectedEndLocation = Location(Coords(1, 3), North)
+        val expectedEndLocation = Location(Coords(1, 3), East)
 
         assertThat(result, `is`(expectedEndLocation))
+    }
+
+    @Test
+    fun `if the mower goes out off the plateau, it will get stucked`() {
+        val mower = Mower(
+            plateau = Plateau(upperRightCoords = Coords(5,5)),
+            initialLocation = Location(Coords(1, 2), North),
+            actions = listOf(Left, Move, Move, Move)
+        )
+
+        assertThrows<IllegalStateException> {
+            mower.mow()
+        }
     }
 
 }

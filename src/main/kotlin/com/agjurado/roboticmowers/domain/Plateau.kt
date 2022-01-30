@@ -22,6 +22,14 @@ data class Plateau(private val upperRightCoords: Coords) {
             else -> true
         }
 
+    fun isLocationOutsideOfPlateau(location: Location): Boolean = when {
+        location.coords.x < bottomLeftCoords.x -> true
+        location.coords.x > upperRightCoords.x -> true
+        location.coords.y < bottomLeftCoords.y -> true
+        location.coords.y > upperRightCoords.y -> true
+        else -> false
+    }
+
     companion object {
         fun createPlateauFrom(upperRightCoords: Coords): Either<PlateauError, Plateau> =
             validatePlateauLimits(upperRightCoords)

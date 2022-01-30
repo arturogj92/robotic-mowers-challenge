@@ -21,7 +21,7 @@ class SeatMaintenanceOfficeInputParserTest {
         """.trimIndent()
         )
 
-        val result: List<Validated<List<InvalidInput>, Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
+        val result: Validated<Set<InvalidInput>, List<Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
 
         val firstExpectedMower = Mower(
             Plateau(Coords(5, 5)),
@@ -35,8 +35,7 @@ class SeatMaintenanceOfficeInputParserTest {
             listOf(Move, Move, Right, Move, Move, Right, Move, Right, Right, Move)
         )
 
-        result[0] shouldBeValid firstExpectedMower
-        result[1] shouldBeValid secondExpectedMower
+        result shouldBeValid listOf(firstExpectedMower, secondExpectedMower)
     }
 
     @Test
@@ -49,11 +48,11 @@ class SeatMaintenanceOfficeInputParserTest {
         """.trimIndent()
         )
 
-        val result: List<Validated<List<InvalidInput>, Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
+        val result: Validated<Set<InvalidInput>, List<Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
 
-        val invalidInput = listOf(InvalidInput(field="NotNumericCoords", error="NotNumericCoords"))
+        val invalidInput = setOf(InvalidInput(field="NotNumericCoords", error="NotNumericCoords"))
 
-        result[0] shouldBeInvalid invalidInput
+        result shouldBeInvalid invalidInput
     }
 
     @Test
@@ -66,11 +65,11 @@ class SeatMaintenanceOfficeInputParserTest {
         """.trimIndent()
         )
 
-        val result: List<Validated<List<InvalidInput>, Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
+        val result: Validated<Set<InvalidInput>, List<Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
 
-        val invalidInput = listOf(InvalidInput(field="ExceedsPlateauLimit", error="ExceedsPlateauLimit"))
+        val invalidInput = setOf(InvalidInput(field="ExceedsPlateauLimit", error="ExceedsPlateauLimit"))
 
-        result[0] shouldBeInvalid invalidInput
+        result shouldBeInvalid invalidInput
     }
 
 
@@ -84,11 +83,11 @@ class SeatMaintenanceOfficeInputParserTest {
         """.trimIndent()
         )
 
-        val result: List<Validated<List<InvalidInput>, Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
+        val result: Validated<Set<InvalidInput>, List<Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
 
-        val invalidInput = listOf(InvalidInput(field="Direction", error="UnknownDirection"))
+        val invalidInput = setOf(InvalidInput(field="Direction", error="UnknownDirection"))
 
-        result[0] shouldBeInvalid invalidInput
+        result shouldBeInvalid invalidInput
     }
 
     @Test
@@ -101,11 +100,11 @@ class SeatMaintenanceOfficeInputParserTest {
         """.trimIndent()
         )
 
-        val result: List<Validated<List<InvalidInput>, Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
+        val result: Validated<Set<InvalidInput>, List<Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
 
-        val invalidInput = listOf(InvalidInput(field="MowerActionError", error="UnknownMowerAction"))
+        val invalidInput = setOf(InvalidInput(field="MowerActionError", error="UnknownMowerAction"))
 
-        result[0] shouldBeInvalid invalidInput
+        result shouldBeInvalid invalidInput
     }
 
 
@@ -119,15 +118,15 @@ class SeatMaintenanceOfficeInputParserTest {
         """.trimIndent()
         )
 
-        val result: List<Validated<List<InvalidInput>, Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
+        val result: Validated<Set<InvalidInput>, List<Mower>> = SeatMaintenanceOfficeInputParser.parseInput(input)
 
-        val invalidInputs = listOf(
+        val invalidInputs = setOf(
             InvalidInput(field="ExceedsPlateauLimit", error="ExceedsPlateauLimit"),
             InvalidInput(field="Direction", error="UnknownDirection"),
             InvalidInput(field="MowerActionError", error="UnknownMowerAction"),
         )
 
-        result[0] shouldBeInvalid invalidInputs
+        result shouldBeInvalid invalidInputs
     }
 
 

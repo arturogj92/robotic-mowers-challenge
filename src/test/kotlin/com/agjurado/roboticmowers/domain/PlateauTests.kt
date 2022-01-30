@@ -30,5 +30,11 @@ class PlateauTests {
         }
     }
 
+    @Test
+    fun `check if a location is outside the plateau`() {
+        val plateau = Plateau(Coords(5, 5))
+
+        plateau.isLocationOutsideOfPlateau(Location(Coords(-1, 2), East))
+    }
 
 }

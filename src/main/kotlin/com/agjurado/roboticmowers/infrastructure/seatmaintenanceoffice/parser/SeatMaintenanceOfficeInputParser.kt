@@ -12,11 +12,17 @@ import org.springframework.stereotype.Component
 
 @Component
 object SeatMaintenanceOfficeInputParser : InputParser<SeatMaintenanceOfficeMowerInput> {
-    override fun parseInput(input: SeatMaintenanceOfficeMowerInput): List<Validated<List<InvalidInput>, Mower>> =
+    override fun parseInput(input: SeatMaintenanceOfficeMowerInput): Validated<Set<InvalidInput>, List<Mower>> =
         mapMowerRawConfig(input.value.lines())
             .let(::generateConfiguredMowers)
+            .traverseValidated(Semigroup.list()) { it }
+            .mapLeft { it.toSet() }
 
-    private fun generateConfiguredMowers(rawMowersConfig: MowersRawConfig) =
+    //Validated<List<InvalidInput>, Mower>
+
+    //Validated<List<InvalidInput>, Mower>
+
+    private fun generateConfiguredMowers(rawMowersConfig: MowersRawConfig): List<Validated<List<InvalidInput>, Mower>> =
         (0 until rawMowersConfig.numberOfMowersToConfigure)
             .map { index -> mapMower(rawMowersConfig, index) }
 

@@ -18,8 +18,10 @@ data class Mower(
             initialLocation).isRight()) { "The mower initial position is not valid" }
     }
 
-    fun mow() =
+    fun mow(): Mower =
         actions.forEach(::handleAction)
+            .let { this }
+
 
     private fun handleAction(mowerAction: MowerAction) {
         when (mowerAction) {
@@ -39,6 +41,13 @@ data class Mower(
 
     private fun move() {
         currentLocation = currentLocation.getForwardLocation()
+        if (mowerGetOffTheGround()) {
+            throw IllegalStateException("The mower is stucked because it went off the plateau")
+        }
+    }
+
+    private fun mowerGetOffTheGround(): Boolean {
+        return plateau.isLocationOutsideOfPlateau(currentLocation)
     }
 
     fun getCurrentLocation() = currentLocation

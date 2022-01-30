@@ -5,5 +5,5 @@ import com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.parser.In
 import com.agjurado.roboticmowers.infrastructure.seatmaintenanceoffice.parser.SeatMaintenanceOfficeInputParser
 
 interface InputParser<T> {
-    fun parseInput(input: T): List<Validated<List<InvalidInput>, Mower>>
+    fun parseInput(input: T): Validated<Set<InvalidInput>, List<Mower>>
 }
