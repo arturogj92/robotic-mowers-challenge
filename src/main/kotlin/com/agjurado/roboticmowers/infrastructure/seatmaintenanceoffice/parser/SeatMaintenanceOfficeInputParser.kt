@@ -18,10 +18,6 @@ object SeatMaintenanceOfficeInputParser : InputParser<SeatMaintenanceOfficeMower
             .traverseValidated(Semigroup.list()) { it }
             .mapLeft { it.toSet() }
 
-    //Validated<List<InvalidInput>, Mower>
-
-    //Validated<List<InvalidInput>, Mower>
-
     private fun generateConfiguredMowers(rawMowersConfig: MowersRawConfig): List<Validated<List<InvalidInput>, Mower>> =
         (0 until rawMowersConfig.numberOfMowersToConfigure)
             .map { index -> mapMower(rawMowersConfig, index) }
