@@ -91,6 +91,7 @@ In this case I decided to read a "hardcoded" string with the input but it would 
             MMRMMRMRRM
             2 2 N
             RLRLMMLR
+* When a mower finish the work, will go outside the plateu, so it's not possible to have a colission between mowers.
 
 ## How to run the code
 
