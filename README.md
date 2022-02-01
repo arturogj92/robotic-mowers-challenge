@@ -80,6 +80,18 @@ The way of receiving the input can be done in several ways, for example:
 
 In this case I decided to read a "hardcoded" string with the input but it would be very easy to use other mentioned ways because just some adapter must be implemented and the domain layer will keep intact avoiding possible bugs
 
+## Assumptions
+
+* The code is ready to handle more mowers if necessary, so you can send inputs like that:
+
+            5 5
+            1 2 N
+            LMLMLMLMM
+            3 3 E
+            MMRMMRMRRM
+            2 2 N
+            RLRLMMLR
+
 ## How to run the code
 
 The code contains a broad suite of test. There are some tests who execute the Input and Output provided in the instructions in Domain language, but you can also run the application and the terminal will log the output results
