@@ -76,8 +76,9 @@ The way of receiving the input can be done in several ways, for example:
 * Rest controller
 * CLI
 * Reading files
+* Many others
 
-And more. In this case I decided read a "hardcoded" string with the input but it would be very easy to use other mentioned ways.
+In this case I decided to read a "hardcoded" string with the input but it would be very easy to use other mentioned ways because just some adapter must be implemented and the domain layer will keep intact avoiding possible bugs
 
 ## How to run the code
 
