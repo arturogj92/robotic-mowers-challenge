@@ -34,7 +34,7 @@ Hexagonal architecture brings to your application a clean layer separation, that
 
 In the domain layer lies the business logic. All the objects inside the domain application must be in a valid state to keep your domain always valid.
 Those domain objects brings you function for creating this objects in a safe way using monads (**[also known as parsing](https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/)**).
-Those monads represent an object with two states, for example: ```Either<Error, Mower>``` means that your object can contain or a valid Mower, but not both.
+Those monads represent an object with two states, for example: ```Either<Error, Mower>``` means that your object can contain an error or a valid Mower, but not both.
 
 For kotlin language reasons, it's not possible to create a private constructor and let the developer to just use the safe object creation way because the kotlin's ```copy``` function  will be always available, so the object needs to check before construction if is valid, in that case an exception will be thrown.
 
