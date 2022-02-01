@@ -68,6 +68,17 @@ In this challenge, the mower's input data will be received in the class ```SeatM
 
 That receiver will use a port called ```InputParser``` which have an implementation for parsing SeatMaintenanceOffice inputs. If in the future is required to understand another type of input, we just need to create a different implementation of the parser.
 
+### Little code flow explanation
+
+First, the infrastructure receiver ```SeatMaintenanceOfficeInputReceiver``` read the input and parse it using the ```SeatMaintenanceOfficeInputParser``` and creates valid mowers. The controller delegates to the application service which puts the mower to work, when the mower finish, a domain event is raised. That event is listened and handled, in my handling implementation, the final position of the mower will be printed.
+
+The way of receiving the input can be done in several ways, for example:
+* Rest controller
+* CLI
+* Reading files
+
+And more. In this case I decided read a "hardcoded" string with the input but it would be very easy to use other mentioned ways.
+
 ## How to run the code
 
 The code contains a broad suite of test. There are some tests who execute the Input and Output provided in the instructions in Domain language, but you can also run the application and the terminal will log the output results
