@@ -1,5 +1,4 @@
-# ROBOTIC MOWER CHALLENGE FOR SEAT:CODE
-
+# ROBOTIC MOWER CHALLENGE
 ## Introduction
 
 In this readme.md you will find information about:
